@@ -11,8 +11,14 @@ package worldbuilder;
  */
 public class ItemOption{
     
-    public ItemOption(String n, int minQan, int maxQan, String qal, int val, int g) {
+    Item core;
+    int minimum;
+    int maximum;
         
+    public ItemOption(String n, int minQan, int maxQan, String qal, int val, int g) {
+        core = new Item(n,qal,val,g);
+        minimum = minQan;
+        maximum = maxQan;
     }
     
 }
