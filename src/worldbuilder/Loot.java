@@ -91,11 +91,13 @@ public class Loot {
             }
             //There is no way to ensure that
         } while (keepAddingItems);
-
+        
+        printDrop(out);
+        out = condenseList(out);
         return out;
 
     }
-
+    
     public void printDrop(ArrayList<ItemDrop> in) {
         DecimalFormat df = new DecimalFormat("####.##");        
         
@@ -128,4 +130,41 @@ public class Loot {
         return total;
     }
 
+    private ArrayList<ItemDrop> condenseList(ArrayList<ItemDrop> in) {
+        
+        ArrayList<ItemDrop> out = new ArrayList<ItemDrop>();
+        
+        
+        for(int i = 0; i < in.size(); i++) {
+            ArrayList<Integer> toDelete = new ArrayList<Integer>();
+            out.add(in.get(i));
+            
+            for(int j = i+1; j < in.size(); j++) {
+                ItemDrop temp;
+                if(out.get(i).core.equals(in.get(j).core)) {
+                    temp = new ItemDrop(out.get(i).core, out.get(i).quantity + in.get(i).quantity);
+                    out.set(i, temp);
+                    toDelete.add(j);
+                }
+            }
+            
+            for(int j = toDelete.size()-1; j >= 0; j--) {
+                in.remove(toDelete.get(j).intValue());
+                
+                
+            }
+            
+        }
+        
+        return out;
+    }
+    
+    private boolean inList(Item item, ArrayList<ItemDrop> dropList) {
+        for(int i = 0; i < dropList.size(); i++) {
+            if(item.getName().equals(dropList.get(i).core.getName()))
+                return true;
+        }
+        return false;
+    }
+    
 }
