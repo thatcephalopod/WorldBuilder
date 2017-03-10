@@ -27,30 +27,24 @@ public class Loot {
         } catch (FileNotFoundException e) {
             throw e;
         }
-
-        try {
-            //Reading the file
-            while (ui.hasNextLine()) {
-                //This is a fairly fragile way of reading the file.
-                //If the file ever breaks the syntax, the whole program fails.
-                String name = ui.next();
-                String quality = ui.next();
-                if (quality.equals("~")) {
-                    quality = "";
-                }
-                int qual = ui.nextInt();
-                int min = ui.nextInt();
-                int max = ui.nextInt();
-                int g = ui.nextInt();
-             
-                Item temp = new Item(name, quality, qual, g);
-                possibilities.add(new ItemOption(temp, min, max));
-
+        //Reading the file
+        while (ui.hasNextLine()) {
+            //This is a fairly fragile way of reading the file.
+            //If the file ever breaks the syntax, the whole program fails.
+            String name = ui.next();
+            String quality = ui.next();
+            if (quality.equals("~")) {
+                quality = "";
             }
-        } catch (Exception e) {
-            throw e;
-        }
+            int qual = ui.nextInt();
+            int min = ui.nextInt();
+            int max = ui.nextInt();
+            int g = ui.nextInt();
 
+            Item temp = new Item(name, quality, qual, g);
+            possibilities.add(new ItemOption(temp, min, max));
+
+        }
     }
 
 }
