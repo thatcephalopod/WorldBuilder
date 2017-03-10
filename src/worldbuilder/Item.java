@@ -6,9 +6,9 @@ package worldbuilder;
  * @author Sam
  */
 public class Item {
-    String name;
-    String quality;
-    int value;
+    private String name;
+    private String quality;
+    private int value;
     /*
     An item will have its quality and a value.
     Quality is the specific name for the quality: this is "Legendary" or "Common" or anything the user desires
@@ -16,7 +16,7 @@ public class Item {
     Artifact, Masterwork, Exceptional, Surperior, Fine, Standard, and Sub-Par
     Artifact is valued at 6 while Sub-par is valued at 0;
     */
-    int gold; //Gold value of the item
+    private int gold; //Gold value of the item
     
     /**
      * The full constructor for Item
@@ -40,5 +40,28 @@ public class Item {
         name = n;
         quality = "";
         value = 1;
+    }
+    
+    public int getGold() {
+        return gold;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getQuality() {
+        return quality;
+    }
+    
+    public int getValue() {
+        return value;
+    }
+    
+    public String toString() {
+        if(quality.equals(""))
+            return name;
+        else
+            return quality + " " + name;
     }
 }
