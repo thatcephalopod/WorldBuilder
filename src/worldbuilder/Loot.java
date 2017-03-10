@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
 /**
@@ -16,7 +15,7 @@ public class Loot {
     String address;
     ArrayList<ItemOption> possibilities = new ArrayList<ItemOption>();
     
-    public Loot(String a) throws FileNotFoundException, IOException {
+    public Loot(String a) throws FileNotFoundException {
         FileReader read;
         Scanner ui;
         
@@ -25,24 +24,6 @@ public class Loot {
             ui = new Scanner(read);
         } catch(FileNotFoundException e) {
             throw e;
-        }
-        
-        //Reading the file
-        while(ui.hasNextLine()) {
-            //This is a fairly fragile way of reading the file.
-            //If the file ever breaks the syntax, the whole program fails.
-            String name = ui.next();
-            String quality = ui.next();
-            if(quality == "~")
-                quality = "";
-            int qual = ui.nextInt();
-            int min = ui.nextInt();
-            int max = ui.nextInt();
-            int g = ui.nextInt();
-            
-            Item temp = new Item(name, quality, qual, g);
-            possibilities.add(new ItemOption(temp, min, max));
-                       
         }
         
         

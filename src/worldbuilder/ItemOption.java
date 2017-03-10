@@ -21,11 +21,4 @@ public class ItemOption{
         maximum = maxQan;
     }
     
-    public ItemOption(Item c, int minQan, int maxQan) {
-        core = c;
-        minimum = minQan;
-        maximum = maxQan;
-    }
-    
-    
 }
