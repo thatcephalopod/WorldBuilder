@@ -14,7 +14,7 @@ public class WorldBuilder {
         
         Loot a = new Loot("standardTable.txt");
         a.printPossibilities();
-        a.printDrop(a.createDrop(100, 20));
+        a.printDrop(a.createDrop(35, 10));
     }
     
 }

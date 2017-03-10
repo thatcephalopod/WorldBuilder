@@ -16,7 +16,7 @@ public class Item {
     Artifact, Masterwork, Exceptional, Surperior, Fine, Standard, and Sub-Par
     Artifact is valued at 6 while Sub-par is valued at 0;
     */
-    private int gold; //Gold value of the item
+    private double gold; //Gold value of the item
     
     /**
      * The full constructor for Item
@@ -25,7 +25,7 @@ public class Item {
      * @param val Value score for the item (0-6, 6 is the highest)
      * @param g Gold value for the item
      */
-    public Item(String n, String qal, int val, int g) {
+    public Item(String n, String qal, int val, double g) {
         name = n;
         quality = qal;
         value = val;
@@ -37,14 +37,14 @@ public class Item {
      * @param n Name of the item
      * @param g Gold value for the item
      */
-    public Item(String n, int g) {
+    public Item(String n, double g) {
         name = n;
         quality = "";
         value = 1;
         gold = g;
     }
     
-    public int getGold() {
+    public double getGold() {
         return gold;
     }
     

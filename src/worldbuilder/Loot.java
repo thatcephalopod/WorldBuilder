@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  * The loot class in intended for generating randomized loot drops based off of
@@ -51,7 +52,7 @@ public class Loot {
             int qual = ui.nextInt();
             int min = ui.nextInt();
             int max = ui.nextInt();
-            int g = ui.nextInt();
+            double g = ui.nextDouble();
 
             Item temp = new Item(name, quality, qual, g);
             possibilities.add(new ItemOption(temp, min, max));
@@ -96,15 +97,18 @@ public class Loot {
     }
 
     public void printDrop(ArrayList<ItemDrop> in) {
+        DecimalFormat df = new DecimalFormat("####.##");        
+        
+        System.out.println("--------------");
         System.out.println("Quality  Name     Value  Quantity");
         
         for (int i = 0; i < in.size(); i++)
         {
-            System.out.printf("%-8s %-8s %5d %9d %n",in.get(i).core.getQuality(), in.get(i).core.getName(), in.get(i).core.getGold(), in.get(i).quantity);
+            System.out.printf("%-8s %-8s %5.2f %9d %n",in.get(i).core.getQuality(), in.get(i).core.getName(), in.get(i).core.getGold(), in.get(i).quantity);
         }
         
         System.out.println("--------------");
-        System.out.println("Total Value: " + totalListGold(in));
+        System.out.println("Total Value: " + df.format(totalListGold(in)));
     }
 
     public void printPossibilities() {
@@ -113,9 +117,9 @@ public class Loot {
         }
     }
     
-    private int totalListGold(ArrayList<ItemDrop> in) {
+    private double totalListGold(ArrayList<ItemDrop> in) {
 
-        int total = 0;
+        double total = 0;
 
         for (int i = 0; i < in.size(); i++) {
             total += in.get(i).core.getGold() * in.get(i).quantity;
