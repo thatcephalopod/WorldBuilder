@@ -27,5 +27,16 @@ public class ItemOption{
         maximum = maxQan;
     }
     
+    public int getMin() {
+        return minimum;
+    }
+    
+    public int getMax() {
+        return maximum;
+    }
+    
+    public Item getCore() {
+        return core;
+    }
     
 }
