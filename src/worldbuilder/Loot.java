@@ -14,18 +14,18 @@ import java.io.IOException;
  */
 public class Loot {
 
-    
-    public class ItemDrop{
+    public class ItemDrop {
+
         public Item core;
         public int quantity;
-        
+
         public ItemDrop(Item c, int q) {
             core = c;
             quantity = q;
         }
-        
+
     }
-    
+
     String address;
     ArrayList<ItemOption> possibilities = new ArrayList<ItemOption>();
 
@@ -58,52 +58,69 @@ public class Loot {
 
         }
     }
-    
+
     public ArrayList<ItemDrop> createDrop(int avg, int dev) {
-        
+
         ArrayList<ItemDrop> out = new ArrayList<ItemDrop>();
         int currentGold = 0;
         boolean keepAddingItems = true;
-        
+
         //Add items to the output list
         do {
-            
+
             //Get the ItemOption to work with
             int pos = (int) (Math.random() * possibilities.size());
             ItemOption temp = possibilities.get(pos);
-            
+
             //Get the quantity of the item to put into the drop
             int quantity = (int) (Math.random() * (temp.getMax() - temp.getMin()) + temp.getMin());
-            
+
             ItemDrop x = new ItemDrop(temp.getCore(), quantity);
             out.add(x);
-            
+
             //Test to see if another item should be added
-            
-            if(totalListGold(out) > avg + dev){
-                out.remove(out.size()-1); //Remove the last item in the list and try again
+            if (totalListGold(out) > avg + dev) {
+                out.remove(out.size() - 1); //Remove the last item in the list and try again
                 //There is no failsafe where the code accidentally makes itself impossible to finish the algorithm.
                 //Just make sure the deviation is fairly high to avoid this.
-            } else if(totalListGold(out) <= avg + dev && totalListGold(out) >= avg + dev) {
+            } else if (totalListGold(out) <= avg + dev && totalListGold(out) >= avg - dev) {
                 keepAddingItems = false; //stop the loop
             } else {
                 //Just go another time
             }
             //There is no way to ensure that
-        } while(keepAddingItems);
-        
+        } while (keepAddingItems);
+
         return out;
+
+    }
+
+    public void printDrop(ArrayList<ItemDrop> in) {
+        System.out.println("Quality  Name     Value  Quantity");
         
+        for (int i = 0; i < in.size(); i++)
+        {
+            System.out.printf("%-8s %-8s %5d %9d %n",in.get(i).core.getQuality(), in.get(i).core.getName(), in.get(i).core.getGold(), in.get(i).quantity);
+        }
+        
+        System.out.println("--------------");
+        System.out.println("Total Value: " + totalListGold(in));
+    }
+
+    public void printPossibilities() {
+        for(int i = 0; i < possibilities.size(); i++) {
+            System.out.println(possibilities.get(i).core);
+        }
     }
     
     private int totalListGold(ArrayList<ItemDrop> in) {
-        
+
         int total = 0;
-        
-        for(int i = 0; i < in.size(); i++) {
+
+        for (int i = 0; i < in.size(); i++) {
             total += in.get(i).core.getGold() * in.get(i).quantity;
         }
-        
+
         return total;
     }
 

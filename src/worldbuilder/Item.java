@@ -29,6 +29,7 @@ public class Item {
         name = n;
         quality = qal;
         value = val;
+        gold = g;
     }
 
     /**
@@ -40,6 +41,7 @@ public class Item {
         name = n;
         quality = "";
         value = 1;
+        gold = g;
     }
     
     public int getGold() {
@@ -60,8 +62,8 @@ public class Item {
     
     public String toString() {
         if(quality.equals(""))
-            return name;
+            return name + " " + gold;
         else
-            return quality + " " + name;
+            return quality + " " + name + " " + gold;
     }
 }

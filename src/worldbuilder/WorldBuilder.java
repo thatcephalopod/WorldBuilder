@@ -13,7 +13,8 @@ public class WorldBuilder {
     public static void main(String[] args) throws IOException {
         
         Loot a = new Loot("standardTable.txt");
-        
+        a.printPossibilities();
+        a.printDrop(a.createDrop(100, 20));
     }
     
 }
