@@ -56,7 +56,7 @@ public class Loot {
 
             Item temp = new Item(name, quality, qual, g);
             possibilities.add(new ItemOption(temp, min, max));
-
+            
         }
     }
 
@@ -92,7 +92,6 @@ public class Loot {
             //There is no way to ensure that
         } while (keepAddingItems);
         
-        printDrop(out);
         out = condenseList(out);
         return out;
 
@@ -106,7 +105,7 @@ public class Loot {
         
         for (int i = 0; i < in.size(); i++)
         {
-            System.out.printf("%-8s %-8s %5.2f %9d %n",in.get(i).core.getQuality(), in.get(i).core.getName(), in.get(i).core.getGold(), in.get(i).quantity);
+            System.out.printf("%-8s %-10s %5.2f %9d %n",in.get(i).core.getQuality(), in.get(i).core.getName(), in.get(i).core.getGold(), in.get(i).quantity);
         }
         
         System.out.println("--------------");
