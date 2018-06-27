@@ -66,4 +66,8 @@ public class Item {
         else
             return quality + " " + name + " " + gold;
     }
+    
+    public boolean equals(Item comparison) {
+        return name.equals(comparison.name) && quality.equals(comparison.quality) && value == comparison.value;
+    }
 }
